@@ -103,7 +103,7 @@ function getCss(theme: string, fontSize: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-  const { text, theme, md, fontSize, widths, heights } = parsedReq
+  const { text, theme, md, fontSize, widths, image, heights } = parsedReq
   return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -115,12 +115,11 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             <div class="spacer">
-            <div class="logo-wrapper">
-                ${getImage(
-                  "https://pbs.twimg.com/profile_images/1352674928240287748/euddcMjZ_normal.jpg",
-                  widths[0],
-                  heights[0]
-                )}
+            <div style="display: flex; justify-content: center; align-content: center;">
+              <div class="logo-wrapper">
+                  ${getImage(image, widths[0], heights[0])}
+              </div>
+              <p style="margin-left: 16px">@HarryBLucas</p>
             </div>
             <div class="spacer">
             <div class="heading">${emojify(md ? marked(text) : sanitizeHtml(text))}
@@ -130,7 +129,7 @@ export function getHtml(parsedReq: ParsedRequest) {
 </html>`
 }
 
-function getImage(src: string, width = "auto", height = "225") {
+function getImage(src: string, width = "auto", height = "60px") {
   return `<img
         class="logo"
         alt="Profile Picture"

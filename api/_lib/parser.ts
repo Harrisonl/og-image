@@ -32,7 +32,7 @@ export function parseRequest(req: IncomingMessage) {
     theme: theme === "dark" ? "dark" : "light",
     md: md === "1" || md === "true",
     fontSize: fontSize || "96px",
-    image: `https://twitter.com/${image}/photo`,
+    image: image as string,
     widths: getArray(widths),
     heights: getArray(heights),
   }
