@@ -116,7 +116,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="spacer">
             <div class="logo-wrapper">
-                ${getImage(image, widths[i], heights[i])}
+                ${getImage(image, widths[0], heights[0])}
             </div>
             <div class="spacer">
             <div class="heading">${emojify(md ? marked(text) : sanitizeHtml(text))}
