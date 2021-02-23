@@ -73,8 +73,10 @@ function getCss(theme: string, fontSize: string) {
     }
 
     .logo {
-        margin: 0 75px;
+        margin: 0 15px;
     }
+
+
 
     .plus {
         color: #BBB;
@@ -98,12 +100,12 @@ function getCss(theme: string, fontSize: string) {
         font-size: ${sanitizeHtml(fontSize)};
         font-style: normal;
         color: ${foreground};
-        line-height: 1.8;
+        line-height: 1;
     }`
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-  const { text, theme, md, fontSize, widths, image, heights } = parsedReq
+  const { text, theme, md, fontSize, image } = parsedReq
   return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -114,24 +116,23 @@ export function getHtml(parsedReq: ParsedRequest) {
     </style>
     <body>
         <div>
-            <div class="spacer">
-              <div class="logo-wrapper">
-                ${getImage(image, widths[0], heights[0])}
-                <p style="margin-left: 16px; font-size: 36px">@HarryBLucas</p>
-              </div>
             <div class="heading">${emojify(md ? marked(text) : sanitizeHtml(text))}
             </div>
+              <div class="logo-wrapper">
+                ${getImage(image)}
+                <p style="margin-left: 16px; font-size: 36px">@HarryBLucas</p>
+              </div>
         </div>
     </body>
 </html>`
 }
 
-function getImage(src: string, width = "auto", height = "60px") {
+function getImage(src: string) {
   return `<img
         class="logo"
         alt="Profile Picture"
         src="${sanitizeHtml(src)}"
-        width="${sanitizeHtml(width)}"
-        height="${sanitizeHtml(height)}"
+        width="60px"
+        height="60px"
     />`
 }

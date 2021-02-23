@@ -139,7 +139,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
     theme = "light",
     md = true,
     text = "**Hello** World",
-    image = "",
     widths = [],
     heights = [],
     showToast = false,
@@ -153,7 +152,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
   url.searchParams.append("theme", theme)
   url.searchParams.append("md", mdValue)
   url.searchParams.append("fontSize", fontSize)
-  url.searchParams.append("image", image)
+  url.searchParams.append("image", "https://pbs.twimg.com/profile_images/1352674928240287748/euddcMjZ_normal.jpg")
   for (let width of widths) {
     url.searchParams.append("widths", width)
   }
