@@ -115,13 +115,10 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             <div class="spacer">
-            <div style="display: flex; justify-content: center; align-content: center;">
               <div class="logo-wrapper">
-                  ${getImage(image, widths[0], heights[0])}
+                ${getImage(image, widths[0], heights[0])}
+                <p style="margin-left: 16px; font-size: 36px">@HarryBLucas</p>
               </div>
-              <p style="margin-left: 16px">@HarryBLucas</p>
-            </div>
-            <div class="spacer">
             <div class="heading">${emojify(md ? marked(text) : sanitizeHtml(text))}
             </div>
         </div>
