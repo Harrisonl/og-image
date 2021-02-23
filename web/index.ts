@@ -1,4 +1,4 @@
-import { ParsedRequest, Theme, FileType } from "../api/_lib/types"
+import { FileType, ParsedRequest } from "../api/_lib/types"
 const { H, R, copee } = window as any
 let timeout = -1
 
@@ -63,15 +63,6 @@ const TextInput = ({ value, oninput }: TextInputProps) => {
   )
 }
 
-interface ButtonProps {
-  label: string
-  onclick: () => void
-}
-
-const Button = ({ label, onclick }: ButtonProps) => {
-  return H("button", { onclick }, label)
-}
-
 interface FieldProps {
   label: string
   input: any
@@ -103,11 +94,6 @@ const Toast = ({ show, message }: ToastProps) => {
   )
 }
 
-const themeOptions: DropdownOption[] = [
-  { text: "Light", value: "light" },
-  { text: "Dark", value: "dark" },
-]
-
 const fileTypeOptions: DropdownOption[] = [
   { text: "PNG", value: "png" },
   { text: "JPEG", value: "jpeg" },
@@ -121,40 +107,6 @@ const fontSizeOptions: DropdownOption[] = Array.from({ length: 10 })
 const markdownOptions: DropdownOption[] = [
   { text: "Plain Text", value: "0" },
   { text: "Markdown", value: "1" },
-]
-
-const imageLightOptions: DropdownOption[] = [
-  { text: "Vercel", value: "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg" },
-  { text: "Next.js", value: "https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg" },
-  { text: "Hyper", value: "https://assets.vercel.com/image/upload/front/assets/design/hyper-color-logo.svg" },
-]
-
-const imageDarkOptions: DropdownOption[] = [
-  { text: "Vercel", value: "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg" },
-  { text: "Next.js", value: "https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg" },
-  { text: "Hyper", value: "https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg" },
-]
-
-const widthOptions = [
-  { text: "width", value: "auto" },
-  { text: "50", value: "50" },
-  { text: "100", value: "100" },
-  { text: "150", value: "150" },
-  { text: "200", value: "200" },
-  { text: "250", value: "250" },
-  { text: "300", value: "300" },
-  { text: "350", value: "350" },
-]
-
-const heightOptions = [
-  { text: "height", value: "auto" },
-  { text: "50", value: "50" },
-  { text: "100", value: "100" },
-  { text: "150", value: "150" },
-  { text: "200", value: "200" },
-  { text: "250", value: "250" },
-  { text: "300", value: "300" },
-  { text: "350", value: "350" },
 ]
 
 interface AppState extends ParsedRequest {
@@ -193,11 +145,9 @@ const App = (_: any, state: AppState, setState: SetState) => {
     showToast = false,
     messageToast = "",
     loading = true,
-    selectedImageIndex = 0,
     overrideUrl = null,
   } = state
   const mdValue = md ? "1" : "0"
-  const imageOptions = theme === "light" ? imageLightOptions : imageDarkOptions
   const url = new URL(window.location.origin)
   url.pathname = `${encodeURIComponent(text)}.${fileType}`
   url.searchParams.append("theme", theme)
